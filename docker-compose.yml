@@ -7,6 +7,7 @@ services:
       MYSQL_DATABASE: video_streaming
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   auth:
     image: myauthimage
     build:
