@@ -1,10 +1,14 @@
 FROM nginx:latest
 
 # Copy the HTML files to the Nginx server root directory
-COPY ./html /usr/share/nginx/html
+COPY ./html /var/www/html
 
 # Copy the Nginx configuration file
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./site.conf /etc/nginx/sites-available/
+
+RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/
+
+RUN systemctl restart nginx & ufw allow 'Nginx HTTP' & ufw allow OpenSSH & ufw enable
 
 # Expose port 80 to the host system
 EXPOSE 80
