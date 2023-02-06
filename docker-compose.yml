@@ -20,29 +20,7 @@ services:
     environment:
       DB_HOST: db
       DB_PASSWORD: password
-  file_sysersion: '3'
-services:
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: video_streaming
-    volumes:
-      - mysql-data:/var/lib/mysql
-  auth:
-    image: myauthimage
-    build:ersion: '3'
-services:
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: video_streaming
-    volumes:
-      - mysql-data:/var/lib/mysql
-  auth:
-    image: myauthimage
-    build:tem:
+  file_system:
     build: ./file_system
     volumes:
       - data:/mnt/data
@@ -66,8 +44,4 @@ volumes:
   mysql-data:
   data:
   static-data:
-      
-
-
-
 
