@@ -34,14 +34,15 @@ services:
       DB_PASSWORD: password
       FILE_SYSTEM_HOST: file_system
   web:
-    image: nginx:latest
+    image: mynginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     ports:
       - 80:80
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
       - static-data:/usr/share/nginx/html
-volumes:
+  volumes:
   mysql-data:
-  data:
   static-data:
 
