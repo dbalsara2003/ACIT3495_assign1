@@ -1,3 +1,4 @@
+USE DATABASE video_streaming
 CREATE TABLE video_library (
   video_id INT NOT NULL AUTO_INCREMENT,
   video_title VARCHAR(255) NOT NULL,
