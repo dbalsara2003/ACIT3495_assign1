@@ -12,7 +12,7 @@ COPY . .
 
 COPY ./login.html /app/public
 
-RUN node app.js
+RUN node app.js &
 
 EXPOSE 3000/tcp
 
