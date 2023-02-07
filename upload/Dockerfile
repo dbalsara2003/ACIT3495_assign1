@@ -14,5 +14,5 @@ COPY ./upload.html /app/public
 
 EXPOSE 3000
 
-CMD ["node", "app.js"]
+#CMD ["node", "./app.js"]
 

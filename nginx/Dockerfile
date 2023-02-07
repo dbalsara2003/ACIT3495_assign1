@@ -4,9 +4,12 @@ FROM nginx:latest
 COPY ./html/index.html /var/www/html/
 
 # Copy the Nginx configuration file
-COPY ./new.conf /etc/nginx/sites-available/
+RUN rm -f /etc/nginx/conf.d/default.conf
 
-#RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/
+COPY ./new.conf /etc/nginx/sites-available/default
+COPY ./new.conf /etc/nginx/sites-enabled/default
+
+RUN service nginx restart
 
 #RUN systemctl restart nginx & ufw allow 'Nginx HTTP' & ufw allow OpenSSH & ufw enable
 
