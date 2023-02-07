@@ -10,6 +10,3 @@ RUN mkdir /mnt/data
 # Expose the shared directory as a volume
 VOLUME /mnt/data
 
-# Start the Samba service
-CMD service smbd start
-
