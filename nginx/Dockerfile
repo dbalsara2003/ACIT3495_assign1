@@ -4,7 +4,7 @@ FROM nginx:latest
 COPY ./html/index.html /var/www/html/
 
 # Copy the Nginx configuration file
-COPY ./site.conf /etc/nginx/sites-available/
+COPY ./new.conf /etc/nginx/sites-available/
 
 #RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/
 
