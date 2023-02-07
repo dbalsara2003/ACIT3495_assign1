@@ -2,11 +2,7 @@
 FROM ubuntu:20.04
 
 # Install required packages
-RUN apt-get update && \
-    apt-get install -y \
-        samba \
-        nfs-kernel-server \
-        nfs-common
+RUN apt-get update
 
 # Create a shared directory for the file system
 RUN mkdir /mnt/data
