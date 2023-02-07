@@ -20,7 +20,7 @@
               .then(response => {
                 if (response.status === 200 ) {
                   // Redirect to a page that comes after access has been granted
-                  window.location.href = "http://localhost:80/viewer";
+                  window.location.href = "http://localhost/viewer";
                 } else {
                   throw new Error("Login failed. Please try again.");
                 }
