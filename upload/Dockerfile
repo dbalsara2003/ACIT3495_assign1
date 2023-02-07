@@ -14,5 +14,5 @@ COPY ./upload.html /app/public
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "app.js"]
 
