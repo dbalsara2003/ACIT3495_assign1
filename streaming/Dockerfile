@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-COPY ./upload.html /app/public
+COPY ./streaming.html /app/public
 
 EXPOSE 3000
 

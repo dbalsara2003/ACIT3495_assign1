@@ -43,7 +43,7 @@ services:
       - 80:80
     volumes:
       - static-data:/usr/share/nginx/html
-  volumes:
-  mysql-data:
-  static-data:
-
+volumes:
+  mysql-data: {}
+  static-data: {}
+  data: {}

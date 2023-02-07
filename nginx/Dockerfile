@@ -6,9 +6,9 @@ COPY ./html/index.html /var/www/html/
 # Copy the Nginx configuration file
 COPY ./site.conf /etc/nginx/sites-available/
 
-RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/
+#RUN ln -s /etc/nginx/sites-available/site.conf /etc/nginx/sites-enabled/
 
-RUN systemctl restart nginx & ufw allow 'Nginx HTTP' & ufw allow OpenSSH & ufw enable
+#RUN systemctl restart nginx & ufw allow 'Nginx HTTP' & ufw allow OpenSSH & ufw enable
 
 # Expose port 80 to the host system
 EXPOSE 80

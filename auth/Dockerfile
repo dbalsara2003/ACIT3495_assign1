@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-COPY ./login_page /app/public
+COPY ./login.html /app/public
 
 EXPOSE 3000
 
