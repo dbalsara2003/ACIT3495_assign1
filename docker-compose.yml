@@ -25,15 +25,15 @@ services:
     build: ./file_system
     volumes:
       - data:/mnt/data
-  streaming:
-    image: mystreamingimage
-    build:
-      context: ./streaming
-      dockerfile: Dockerfile
-    environment:
-      DB_HOST: db
-      DB_PASSWORD: password
-      FILE_SYSTEM_HOST: file_system
+  # streaming:
+  #   image: mystreamingimage
+  #   build:
+  #     context: ./streaming
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     DB_HOST: db
+  #     DB_PASSWORD: password
+  #     FILE_SYSTEM_HOST: file_system
   web:
     image: mynginx
     build:
