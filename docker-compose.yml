@@ -43,7 +43,9 @@ services:
       - 80:80
     volumes:
       - static-data:/usr/share/nginx/html
+      - nginx-conf:/etc/nginx/sites-enabled
 volumes:
   mysql-data: {}
+  nginx-conf: {}
   static-data: {}
   data: {}
