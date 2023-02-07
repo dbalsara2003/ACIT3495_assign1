@@ -8,7 +8,7 @@
               const username = document.getElementById("username").value;
               const password = document.getElementById("password").value;
           
-              fetch("http://localhost:3000", {
+              fetch("http://54.185.193.182:3000", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
@@ -20,7 +20,7 @@
               .then(response => {
                 if (response.status === 200 ) {
                   // Redirect to a page that comes after access has been granted
-                  window.location.href = "http://localhost/viewer";
+                  window.location.href = "http://54.185.193.182/viewer";
                 } else {
                   throw new Error("Login failed. Please try again.");
                 }
