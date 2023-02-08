@@ -1,13 +1,15 @@
 version: '3'
 services:
   db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: video_streaming
+    image: mysqldb
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    ports:
+      - 3306:3306
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    
   auth:
     image: myauthimage
     build:
