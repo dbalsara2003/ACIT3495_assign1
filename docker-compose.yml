@@ -5,6 +5,7 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
+    container_name: "mydb"
     ports:
       - 3306:3306
     volumes:
@@ -14,35 +15,47 @@ services:
     build:
       context: ./auth
       dockerfile: Dockerfile
+    container_name: "myauth"
     ports:
       - 3000:3000
+    depends_on:
+      - db
   upload:
     image: myuploadimage
     build:
       context: ./upload
       dockerfile: Dockerfile
+    container_name: "myupload"
     environment:
       DB_HOST: db
       DB_PASSWORD: password
     ports:
       - 5000:5000
     links:
-      - db 
+      - db
+      - web
+    depends_on:
+      - db
+      - web
     volumes:
       - static-data:/usr/share/nginx/html
   file_system:
     build: ./file_system
+    container_name: "myfilesystem"
     volumes:
       - data:/mnt/data
+    depends_on:
+      - db
   web:
     image: mynginx
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    container_name: "mynginx"
     ports:
       - 80:80
-    links:
-      - upload
+    depends_on:
+      - db
     volumes:
       - static-data:/usr/share/nginx/html
       - nginx-conf:/etc/nginx/sites-enabled

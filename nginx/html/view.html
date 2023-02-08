@@ -26,6 +26,10 @@
           alert("Failed to retrieve file. Please try again.");
         });
       }
+
+      <!-- document.getElementById("upload_button").addEventListener("click", function() {
+        window.location.href = "http://localhost/upload/";
+      }); -->
     </script>
   </head>
   <body>
@@ -33,7 +37,7 @@
     <div>
       <input type="text" id="file-name" placeholder="Enter file name or path">
       <button onclick="playFile()">Play File</button>
-      <button onclick="window.location.href='http://localhost/upload/'">Upload File</button>
+      <button id="upload_button" onclick="window.location.href='http://localhost/upload'">Upload File</button>
     </div>
     <video id="video-player" style="display: none"></video>
     

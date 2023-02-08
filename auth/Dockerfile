@@ -6,7 +6,7 @@ COPY package.json ./
 COPY package-lock.json ./
 
 RUN apt-get update && apt-get install -y nodejs npm
-RUN npm install express
+RUN npm install express body-parser
 
 COPY . .
 

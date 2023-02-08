@@ -2,15 +2,13 @@ FROM ubuntu:latest
 
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY . .
 
 RUN apt-get update && apt-get install -y nodejs npm
 RUN npm install express mysql2
 
-COPY . .
-
-COPY ./upload.html /app/public
+RUN mkdir public
+RUN mv upload.html public/
 
 EXPOSE 5000/tcp
 
