@@ -23,6 +23,10 @@ services:
     environment:
       DB_HOST: db
       DB_PASSWORD: password
+    ports:
+      - 5000:5000
+    volumes:
+      - static-data:/usr/share/nginx/html
   file_system:
     build: ./file_system
     volumes:
