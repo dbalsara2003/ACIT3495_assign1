@@ -12,7 +12,7 @@ COPY . .
 
 COPY ./upload.html /app/public
 
-EXPOSE 3000
+EXPOSE 5000/tcp
 
 #CMD ["node", "./app.js"]
 

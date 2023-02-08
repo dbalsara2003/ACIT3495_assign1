@@ -47,6 +47,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
+    links:
+      - upload
     volumes:
       - static-data:/usr/share/nginx/html
       - nginx-conf:/etc/nginx/sites-enabled
