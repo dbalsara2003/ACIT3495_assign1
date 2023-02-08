@@ -1,12 +1,12 @@
-FROM node:14-alpine
+FROM ubuntu:latest
 
 WORKDIR /app
-
 
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm install
+RUN apt-get update && apt-get install -y nodejs npm
+RUN npm install express mysql2
 
 COPY . .
 
@@ -14,5 +14,4 @@ COPY ./upload.html /app/public
 
 EXPOSE 5000/tcp
 
-#CMD ["node", "./app.js"]
-
+CMD ["node", "app.js", "&"]
