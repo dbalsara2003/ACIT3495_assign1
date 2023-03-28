@@ -1,17 +1,26 @@
-FROM ubuntu:latest
+FROM ubuntu
 
+# Set the working directory
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+# Copy package files
+COPY package*.json ./
 
-RUN apt-get update && apt-get install -y nodejs npm
-RUN npm install express body-parser
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_16.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install
 
+# Copy application files
 COPY . .
 
-COPY ./login.html /app/public
+# Copy the login.html file to the public directory
+COPY login.html /app/public/
 
-EXPOSE 3000/tcp
+# Expose port 3000
+EXPOSE 3000
 
-CMD ["node", "app.js", "&"]
+# Start the application
+CMD ["npm", "start"]
