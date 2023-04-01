@@ -39,13 +39,19 @@ services:
       - web
     volumes:
       - static-data:/usr/share/nginx/html
+
   file_system:
-    build: ./file_system
-    container_name: "myfilesystem"
+    image: myfile_system
+    build:
+      context: ./file_system 
+      dockerfile: Dockerfile
+    container_name: "file_system"
     volumes:
       - data:/mnt/data
     depends_on:
       - db
+
+      
   web:
     image: mynginx
     build:
