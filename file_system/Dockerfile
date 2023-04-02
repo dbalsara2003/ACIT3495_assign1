@@ -1,12 +1,23 @@
-# Ubuntu file system Dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:latest
 
-# Install required packages
-RUN apt-get update
+# Install necessary packages
+RUN apt-get update && \
+    apt-get -y install openssh-server && \
+    mkdir /var/run/sshd && \
+    chmod 0755 /var/run/sshd
 
-# Create a shared directory for the file system
 RUN mkdir /mnt/data
 
-# Expose the shared directory as a volume
-VOLUME /mnt/data
+# Create user
+RUN useradd -ms /bin/bash fileuser && \
+    echo 'fileuser:fileuser' | chpasswd && \
+    chown -R fileuser:fileuser /mnt/data
+
+# Configure SSH
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication no/' /etc/ssh/sshd_config
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
 

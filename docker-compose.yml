@@ -1,72 +1,40 @@
-version: '3'
+version: '2'
 services:
-  db:
-    image: mysqldb
-    build:
-      context: ./mysql
-      dockerfile: Dockerfile
-    container_name: "mydb"
-    ports:
-      - 3306:3306
+  mysql:
+    container_name: mysql
+    image: tamimhemat/acit3495:mysql
     volumes:
       - mysql-data:/var/lib/mysql
   auth:
-    image: myauthimage
-    build:
-      context: ./auth
-      dockerfile: Dockerfile
-    container_name: "myauth"
+    container_name: auth
+    image: tamimhemat/acit3495:auth
     ports:
       - 3000:3000
     depends_on:
-      - db
+      - mysql
   upload:
-    image: myuploadimage
-    build:
-      context: ./upload
-      dockerfile: Dockerfile
-    container_name: "myupload"
-    environment:
-      DB_HOST: db
-      DB_PASSWORD: password
+    container_name: upload
+    image: tamimhemat/acit3495:upload
+    ports:
+      - 4000:4000
+    depends_on:
+      - mysql
+  file_system:
+    image: tamimhemat/acit3495:file_system
+    container_name: file_system
+    volumes:
+      - filedata:/mnt/data
+    depends_on:
+      - mysql
+      - upload
+  viewer:
+    image: tamimhemat/acit3495:viewer
+    container_name: viewer
     ports:
       - 5000:5000
-    links:
-      - db
-      - web
     depends_on:
-      - db
-      - web
-    volumes:
-      - static-data:/usr/share/nginx/html
-
-  file_system:
-    image: myfile_system
-    build:
-      context: ./file_system 
-      dockerfile: Dockerfile
-    container_name: "file_system"
-    volumes:
-      - data:/mnt/data
-    depends_on:
-      - db
-
-      
-  web:
-    image: mynginx
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    container_name: "mynginx"
-    ports:
-      - 80:80
-    depends_on:
-      - db
-    volumes:
-      - static-data:/usr/share/nginx/html
-      - nginx-conf:/etc/nginx/sites-enabled
+      - mysql
+      - file_system
 volumes:
-  mysql-data: {}
-  nginx-conf: {}
-  static-data: {}
-  data: {}
+  mysql-data:
+  filedata:
