@@ -1,7 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
-const request = require('request');
 
 const app = express();
 
@@ -28,12 +27,7 @@ app.post('/auth/login', (req, res) => {
     if (error) throw error;
 
     if (results.length > 0) {
-      // Login successful, redirect to the custom URL
-      const uploadPage = 'http://178.128.226.60/upload';
-      request(uploadPage, (error, response, body) => {
-        if (error) throw error;
-        res.redirect(uploadPage);
-      });
+      res.redirect("/upload");
     } else {
       // Login failed
       res.redirect('/auth');
